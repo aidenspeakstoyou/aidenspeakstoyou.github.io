@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Aiden Speaks to YOU!</title>
+    <style>
+        body {
+            background: url(https://img.itch.zone/aW1hZ2UvMTUxNDEzLzY5MzI3OC5wbmc=/original/eUEsvA.png) repeat center center fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="buttons"></div>
+    <input type="checkbox" id="reverb" style="width: 50px; height: 50px;">
+    <span style="font-size: 3rem; text-shadow: 3px 3px 2px red; font-weight: bold;">Aiden's Inner Thoughts</span>
+    <br><br>
+    <button id="stop" style="width: 200px; height: 70px; background-color: red;">Please Stop</button>
+
+    <audio></audio>
+
+    <script>
+        var sounds = [
+            ['aiden_im_home', 'I\'m home.'],
+            ['aiden_im_home_happy', 'I\'m home!'],
+            ['aiden_morningboss', 'Good morning boss!'],
+            ['aiden_namegenderage', 'Name is Aiden Akihiro... Gender male... age 28.'],
+            ['aiden_yes', 'Yes.'],
+            ['aiden_yesboss', 'Yes, boss!'],
+            ['aiden_good_7', 'It\'s good.'],
+            ['aiden_annoyed', 'Tch.'],
+            ['aiden_chuckle', '*Chuckles*'],
+            ['aiden_happychuckle', '*Laughs*'],
+            ['aiden_hmmm', 'Hmmm... '],
+            ['aiden_enjoy', 'Enjoy!'],
+            ['aiden_getToWork', 'Let\'s get to work!'],
+            ['aiden_stop', 'STOP!'],
+            ['aiden_uhmm', 'U-um...'],
+            ['aiden_waitno', 'Wait, no! I just wanna talk... come back!'],
+            ['aiden_bye', 'Bye.'],
+            ['aiden_good_night', 'Good night.'],
+            ['aiden_morningugh', '*Groaning*'],
+            ['aiden_whatisit', 'What is it!?'],
+            ['aiden_thereyougo', 'There you go.'],
+            ['aiden_testtoday', 'I\'ll need to test this out today.'],
+            ['aiden_acceptoffer', 'I\'ll accept your offer.'],
+            ['aiden_amatch', 'A match!? It already came this quick?'],
+            ['aiden_cantdothat', 'I can\'t do that bird... The rat is innocent.'],
+            ['aiden_cantgobad', 'It can\'t go that bad... right?'],
+            ['aiden_finddatehuh', 'Find a date, huh?'],
+            ['aiden_whyfinddate', 'Why is everybody asking me to find a date...'],
+            ['aiden_flavor', 'O-oh... my... this is tremendous! I-it\'s so good! The flavor... the tenderness! All of it is incredible!'],
+            ['aiden_girlfriend', 'G-girlfriend!?'],
+            ['aiden_greet_dogs', '*Chuckles* Come here you little things.'],
+            ['aiden_handledwell', 'You handled that well.'],
+            ['aiden_imcoming', 'I\'m coming!'],
+            ['aiden_isitworking', 'Is it working!?'],
+            ['aiden_ithink', 'I think.'],
+            ['aiden_ithinkthatsit', 'I think that\'s it.'],
+            ['aiden_itsworking', 'It\'s working!'],
+            ['aiden_nothearing', 'I\'m not hearing anything peculiar yet...'],
+            ['aiden_notleaveanimal', 'I shall not leave any animals in harm\'s way!'],
+            ['aiden_partways', 'This is where we part ways.'],
+            ['aiden_pleasureismine', 'The pleasure is mine.'],
+            ['aiden_ready', 'You ready, boss?'],
+            ['aiden_seafoodpoultry', 'Seafood. Poultry.'],
+            ['aiden_tetsu', 'Tetsu.'],
+            ['aiden_webefine', 'We\'ll be fine.'],
+            ['aiden_whynotworking', 'Why is it not working!?'],
+            ['aiden_zerodating', 'I practically have zero dating experience, after all.'],
+        ]
+
+        sounds.forEach(sound => {
+            var audio = document.createElement('audio')
+            audio.src = 'audio/' + sound[0] + '.ogg'
+
+            var button = document.createElement('button')
+            button.textContent = sound[1]
+            button.onclick = () => {
+                audio.currentTime = 0
+                audio.play()
+            }
+            button.style.width = '200px'
+            button.style.height = '70px'
+            button.style.margin = '4px'
+
+            sound.push(button, audio)
+            document.getElementById('buttons').appendChild(button)
+            document.getElementById('buttons').appendChild(audio)
+        })
+
+        document.getElementById('reverb').onclick = (event) => {
+            if (event.target.checked) {
+                sounds.forEach(sound => {
+                    sound[3].src = 'audio/reverb/' + sound[0] + '.ogg'
+                })
+            } else {
+                sounds.forEach(sound => {
+                    sound[3].src = 'audio/' + sound[0] + '.ogg'
+                })
+            }
+        }
+
+        document.getElementById('stop').onclick = (event) => {
+            sounds.forEach(sound => {
+                sound[3].pause()
+                sound[3].currentTime = 0
+            })
+        }
+    </script>
+</body>
+
+</html>
